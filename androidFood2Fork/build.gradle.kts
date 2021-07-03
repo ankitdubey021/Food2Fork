@@ -2,6 +2,7 @@ plugins {
     id(Plugins.androidApplication)
     kotlin(KotlinPlugins.android)
     kotlin(KotlinPlugins.kapt)
+    id(Plugins.hilt)
     kotlin(KotlinPlugins.serialization) version Kotlin.version
 }
 
@@ -21,6 +22,11 @@ dependencies {
     implementation(Compose.constraintLayout)
     implementation(Compose.activity)
     implementation(Compose.navigation)
+
+    implementation(Hilt.hiltAndroid)
+    implementation(Hilt.hiltNavigation)
+    kapt(Hilt.hiltCompiler)
+
 
     debugImplementation(SquareUp.leakCanary)
 }
