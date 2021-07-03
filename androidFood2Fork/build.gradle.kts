@@ -11,6 +11,7 @@ dependencies {
     implementation(Google.material)
     implementation(AndroidX.appCompat)
     implementation(Kotlinx.datetime)
+    implementation(Ktor.android)
 
     implementation("androidx.compose.runtime:runtime:1.0.0-rc01")
     implementation("androidx.compose.runtime:runtime-livedata:1.0.0-rc01")
