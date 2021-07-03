@@ -8,6 +8,9 @@ object Compose {
     const val foundation = "androidx.compose.foundation:foundation:${composeVersion}"
     const val compiler = "androidx.compose.compiler:compiler:${composeVersion}"
 
+    const val viewModel = "androidx.lifecycle:lifecycle-viewmodel-compose:1.0.0-alpha07"
+    const val hiltNavigation = "androidx.hilt:hilt-navigation-compose:1.0.0-alpha02"
+
     private const val constraintLayoutComposeVersion = "1.0.0-alpha08"
     const val constraintLayout = "androidx.constraintlayout:constraintlayout-compose:${constraintLayoutComposeVersion}"
 
