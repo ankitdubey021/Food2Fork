@@ -5,6 +5,11 @@ import android.os.Bundle
 import androidx.activity.compose.setContent
 import com.ankitdubey021.food2fork.android.presentation.navigation.Navigation
 import com.ankitdubey021.food2fork.datasource.network.KtorClientFactory
+import com.ankitdubey021.food2fork.datasource.network.RecipeServiceImpl
+import com.ankitdubey021.food2fork.datasource.network.RecipeServiceImpl.Companion.BASE_URL
+import com.ankitdubey021.food2fork.datasource.network.model.RecipeDto
+import com.ankitdubey021.food2fork.datasource.network.toRecipe
+import com.ankitdubey021.food2fork.domain.utils.DatetimeUtil
 import dagger.hilt.android.AndroidEntryPoint
 import io.ktor.client.request.*
 import io.ktor.http.*
@@ -12,26 +17,22 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.launch
 
-const val TOKEN = "Token 9c8b06d329136da358c2d00e76946b0111ce2c48"
-const val BASE_URL = "https://food2fork.ca/api/recipe"
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
+    @ExperimentalStdlibApi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         val ktorClient = KtorClientFactory().build()
         CoroutineScope(IO).launch {
-            try {
-                val recipeId = 1551
-                val recipe = ktorClient.get<String> {
-                    url("$BASE_URL/get?id=$recipeId")
-                    header("Authorization", TOKEN)
-                }
-                println("KtorTest: ${recipe}")
-            }catch (ex : Exception){
-                ex.printStackTrace()
-            }
+            val recipeId = 1551
+
+            val recipeServie = RecipeServiceImpl(ktorClient, BASE_URL)
+            val recipe = recipeServie.get(recipeId)
+            println("KtorTest: ${recipe.title}")
+            println("KtorTest: ${recipe.dateUpdated}")
+            println("KtorTest: ${DatetimeUtil().humanizeDatetime(recipe.dateUpdated)}")
         }
 
 

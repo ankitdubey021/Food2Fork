@@ -10,6 +10,7 @@ import androidx.navigation.compose.rememberNavController
 import com.ankitdubey021.food2fork.android.presentation.recipe_detail.RecipeDetailScreen
 import com.ankitdubey021.food2fork.android.presentation.recipe_detail.RecipeDetailViewModel
 import com.ankitdubey021.food2fork.android.presentation.recipe_list.RecipeListScreen
+import com.ankitdubey021.food2fork.android.presentation.recipe_list.RecipeListViewModel
 
 @Composable
 fun Navigation() {
@@ -17,6 +18,7 @@ fun Navigation() {
 
     NavHost(navController = navController, startDestination = Screen.RecipeList.route) {
         composable(Screen.RecipeList.route) {
+            val viewModel: RecipeListViewModel = hiltViewModel()
             RecipeListScreen(
                 onRecipeSelected = { recipeId ->
                     navController.navigate(Screen.RecipeDetail.route + "/$recipeId")
@@ -29,7 +31,7 @@ fun Navigation() {
             arguments = listOf(navArgument("recipeId") { type = NavType.IntType })
         ) { navBackStackEntry ->
             val viewModel: RecipeDetailViewModel = hiltViewModel()
-            RecipeDetailScreen(recipeId = viewModel.recipeId.value)
+            RecipeDetailScreen(recipe = viewModel.recipe.value)
         }
     }
 }
