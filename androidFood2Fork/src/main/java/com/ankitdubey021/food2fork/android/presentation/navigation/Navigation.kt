@@ -20,6 +20,7 @@ fun Navigation() {
         composable(Screen.RecipeList.route) {
             val viewModel: RecipeListViewModel = hiltViewModel()
             RecipeListScreen(
+                state = viewModel.state.value,
                 onRecipeSelected = { recipeId ->
                     navController.navigate(Screen.RecipeDetail.route + "/$recipeId")
                 }

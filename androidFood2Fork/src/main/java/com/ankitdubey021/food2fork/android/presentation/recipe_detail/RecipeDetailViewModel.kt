@@ -5,7 +5,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.ankitdubey021.food2fork.datasource.network.RecipeService
 import com.ankitdubey021.food2fork.domain.model.Recipe
 import com.ankitdubey021.food2fork.interectors.recipe_details.GetRecipe
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -33,7 +32,7 @@ class RecipeDetailViewModel @Inject constructor(
         getRecipe.execute(recipeId = recipeId).onEach { dataState->
 
             println("VM : ${dataState.isLoading}")
-
+            println("::::::;${dataState.data}")
             dataState.data?.let {
                 recipe.value = it
             }

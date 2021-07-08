@@ -13,6 +13,7 @@ dependencies {
     implementation(Kotlinx.datetime)
     implementation(Ktor.android)
 
+    implementation ("com.google.accompanist:accompanist-coil:0.13.0")
     implementation("androidx.compose.runtime:runtime:1.0.0-rc01")
     implementation("androidx.compose.runtime:runtime-livedata:1.0.0-rc01")
     implementation("androidx.compose.ui:ui:1.0.0-rc01")

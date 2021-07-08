@@ -25,6 +25,7 @@ class DatetimeUtil
     // States: yesterday, today, tomorrow and everything else
     @ExperimentalStdlibApi
     fun humanizeDatetime(date: LocalDateTime?): String{
+
         val sb = StringBuilder()
         date?.run {
             val hour = if(this.hour > 12){

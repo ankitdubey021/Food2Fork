@@ -1,5 +1,6 @@
 package com.ankitdubey021.food2fork.android.di
 
+import com.ankitdubey021.food2fork.datasource.cache.RecipeCache
 import com.ankitdubey021.food2fork.datasource.network.RecipeService
 import com.ankitdubey021.food2fork.interectors.recipe_details.GetRecipe
 import com.ankitdubey021.food2fork.interectors.recipe_list.SearchRecipes
@@ -16,17 +17,18 @@ object UseCaseModule {
     @Singleton
     @Provides
     fun provideSearchRecipe(
-        recipeService: RecipeService
+        recipeService: RecipeService,
+        recipeCache: RecipeCache
     ): SearchRecipes {
-        return SearchRecipes(recipeService)
+        return SearchRecipes(recipeService, recipeCache)
     }
 
     @Singleton
     @Provides
     fun provideGetRecipe(
-        recipeService: RecipeService
+        recipeCache: RecipeCache
     ): GetRecipe {
-        return GetRecipe(recipeService)
+        return GetRecipe(recipeCache = recipeCache)
     }
 
 }
